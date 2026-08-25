@@ -1,5 +1,5 @@
 decoded=False
-bytes=20003
+bytes=10924
 image_data_remaining=0
 video_data_remaining=0
 chat_fab_count=0
