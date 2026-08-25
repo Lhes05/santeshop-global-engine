@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Exact 95(3) restore: preserve the original page, buttons, chat menu, and uploaded assets.
 import base64, gzip, re
 from pathlib import Path
 
