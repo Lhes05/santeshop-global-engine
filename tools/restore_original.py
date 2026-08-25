@@ -5,11 +5,9 @@ from pathlib import Path
 INDEX = Path("index.html")
 html = INDEX.read_text(encoding="utf-8")
 
-# The current index contains the original 95(3) page as a gzip+Base64 payload.
-# Decode it so the actual original HTML becomes the live GitHub Pages document.
-m = re.search(r'const\s+B64\s*=\s*"([A-Za-z0-9+/=]+)"', html, re.S)
+m = re.search(r'const\s+B64\s*=\s*(["\'])([A-Za-z0-9+/=]+)\1', html, re.S)
 if m:
-    html = gzip.decompress(base64.b64decode(m.group(1))).decode("utf-8")
+    html = gzip.decompress(base64.b64decode(m.group(2))).decode("utf-8")
 
 image_paths = [
     "assets/images/brand-logo.png",
@@ -45,8 +43,6 @@ image_paths = [
 i = 0
 def replace_img(match):
     global i
-    if i >= len(image_paths):
-        return match.group(0)
     value = f'src="{image_paths[i]}"'
     i += 1
     return value
@@ -56,8 +52,6 @@ html = re.sub(r'src="data:image/[^;]+;base64,[^"]+"', replace_img, html)
 j = 0
 def replace_thumb(match):
     global j
-    if j >= 6:
-        return match.group(0)
     j += 1
     return f'data-image="assets/images/hsg-poster-{j:02d}.jpg"'
 
@@ -80,4 +74,8 @@ for name, path in video_paths.items():
     )
 
 INDEX.write_text(html, encoding="utf-8")
-print(f"Restored original 95(3) HTML: {len(html):,} bytes; images replaced: {i}; thumbnails: {j}")
+Path("RESTORE_STATUS.txt").write_text(
+    f"decoded={bool(m)}\nbytes={len(html)}\nimage_data_remaining={html.count('data:image')}\nvideo_data_remaining={html.count('data:video')}\nchat_fab_count={html.count('chat-fab')}\nimages_replaced={i}\nthumbnails_replaced={j}\n",
+    encoding="utf-8",
+)
+print(Path("RESTORE_STATUS.txt").read_text())
