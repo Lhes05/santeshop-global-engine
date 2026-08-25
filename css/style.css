@@ -1,0 +1,21 @@
+/* =================================
+   SanteShop Global Engine
+   Main Stylesheet
+   Version: 0.1
+================================= */
+
+:root {
+  --green: #087f45;
+  --green-light: #0aa85a;
+  --dark: #102018;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
