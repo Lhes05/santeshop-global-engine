@@ -6,9 +6,13 @@ from pathlib import Path
 INDEX = Path("index.html")
 html = INDEX.read_text(encoding="utf-8")
 
-m = re.search(r'const\s+B64\s*=\s*(["\'])([A-Za-z0-9+/=]+)\1', html, re.S)
+# The previous decoder was too strict. Read the complete quoted payload,
+# normalize harmless whitespace/URL-safe characters, then decode it.
+m = re.search(r'const\s+B64\s*=\s*(["\'])(.*?)\1', html, re.S)
 if m:
-    html = gzip.decompress(base64.b64decode(m.group(2))).decode("utf-8")
+    payload = re.sub(r'\s+', '', m.group(2)).replace('-', '+').replace('_', '/')
+    payload += '=' * (-len(payload) % 4)
+    html = gzip.decompress(base64.b64decode(payload, validate=False)).decode("utf-8")
 
 image_paths = [
     "assets/images/brand-logo.png",
