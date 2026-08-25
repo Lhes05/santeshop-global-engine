@@ -1,4 +1,5 @@
 name: Restore Original 95(3) Site
+# Trigger exact restoration after decoder fix
 
 on:
   push:
