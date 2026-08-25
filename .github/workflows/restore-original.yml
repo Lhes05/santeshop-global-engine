@@ -1,0 +1,35 @@
+name: Restore Original 95(3) Site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/restore-original.yml'
+      - 'tools/restore_original.py'
+      - 'index.html'
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore original page and externalize assets
+        run: python3 tools/restore_original.py
+
+      - name: Commit restored page
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Restore exact 95(3) design and all original buttons [skip ci]"
+          git push
