@@ -1,0 +1,7 @@
+decoded=False
+bytes=20003
+image_data_remaining=0
+video_data_remaining=0
+chat_fab_count=0
+images_replaced=0
+thumbnails_replaced=0
