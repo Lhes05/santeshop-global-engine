@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Triggered restore pass for the user's original 95(3) page.
 import base64, gzip, re
 from pathlib import Path
 
