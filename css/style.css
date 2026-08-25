@@ -1,21 +1,488 @@
-/* =================================
-   SanteShop Global Engine
-   Main Stylesheet
-   Version: 0.1
-================================= */
+/* =====================================
+   SANTESHOP GLOBAL ENGINE
+   Premium Wellness Design System v1
+===================================== */
+
 
 :root {
-  --green: #087f45;
-  --green-light: #0aa85a;
-  --dark: #102018;
-  --white: #ffffff;
+
+    --green: #087f45;
+    --green-light: #0aa85a;
+    --dark: #102018;
+    --text: #34443b;
+    --white: #ffffff;
+    --light: #f4fbf7;
+    --border: #dcefe4;
+
 }
+
 
 * {
-  box-sizing: border-box;
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
 }
 
+
+
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.6;
+
+}
+
+
+
+a {
+
+    text-decoration: none;
+    color: inherit;
+
+}
+
+
+
+/* ==========================
+   NAVBAR
+========================== */
+
+
+.navbar {
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 8%;
+
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(10px);
+
+}
+
+
+
+.logo {
+
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--green);
+
+}
+
+
+.logo span {
+
+    display:block;
+    font-size:10px;
+    letter-spacing:3px;
+    color:var(--dark);
+
+}
+
+
+
+nav {
+
+    display:flex;
+    gap:30px;
+    font-weight:600;
+
+}
+
+
+nav a:hover {
+
+    color:var(--green);
+
+}
+
+
+
+
+/* ==========================
+   HERO
+========================== */
+
+
+.hero {
+
+    min-height:85vh;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    align-items:center;
+
+    padding:60px 8%;
+
+    background:
+    radial-gradient(circle at top right,#dff7e9,transparent 40%),
+    var(--light);
+
+}
+
+
+
+.hero-content {
+
+    max-width:600px;
+
+}
+
+
+
+.tag {
+
+    color:var(--green);
+    font-weight:bold;
+    letter-spacing:2px;
+    margin-bottom:20px;
+
+}
+
+
+
+.hero h1 {
+
+    font-size:72px;
+    line-height:1.05;
+
+    color:var(--dark);
+
+    margin-bottom:25px;
+
+}
+
+
+
+.hero h1 span {
+
+    color:var(--green);
+
+}
+
+
+
+.hero p {
+
+    font-size:20px;
+    margin-bottom:35px;
+
+}
+
+
+
+
+.buttons {
+
+    display:flex;
+    gap:15px;
+
+}
+
+
+
+.btn-primary,
+.btn-secondary {
+
+
+    padding:16px 30px;
+
+    border-radius:30px;
+
+    font-weight:bold;
+
+}
+
+
+
+.btn-primary {
+
+    background:var(--green);
+    color:white;
+
+}
+
+
+
+.btn-primary:hover {
+
+    background:var(--green-light);
+
+}
+
+
+
+.btn-secondary {
+
+    border:1px solid var(--border);
+
+    background:white;
+
+}
+
+
+
+
+/* ==========================
+   PRODUCT IMAGE
+========================== */
+
+
+.hero-product {
+
+    display:flex;
+    justify-content:center;
+
+}
+
+
+
+.product-image {
+
+    width:380px;
+    height:480px;
+
+    background:white;
+
+    border-radius:35px;
+
+    padding:30px;
+
+    box-shadow:
+    0 30px 60px rgba(0,0,0,.12);
+
+}
+
+
+
+.product-image img {
+
+    width:100%;
+    height:100%;
+    object-fit:contain;
+
+}
+
+
+
+
+/* ==========================
+   SECTIONS
+========================== */
+
+
+.section {
+
+    padding:80px 8%;
+
+    text-align:center;
+
+}
+
+
+
+.section h2 {
+
+    font-size:42px;
+    color:var(--dark);
+
+    margin-bottom:20px;
+
+}
+
+
+
+
+/* ==========================
+   PRODUCT CARDS
+========================== */
+
+
+.cards {
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:30px;
+
+    margin-top:40px;
+
+}
+
+
+
+.card {
+
+    padding:35px;
+
+    background:white;
+
+    border-radius:25px;
+
+    border:1px solid var(--border);
+
+    transition:.3s;
+
+}
+
+
+
+.card:hover {
+
+    transform:translateY(-10px);
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.08);
+
+}
+
+
+
+.card h3 {
+
+    color:var(--green);
+
+    margin-bottom:15px;
+
+}
+
+
+
+
+
+/* ==========================
+ BUSINESS CTA
+========================== */
+
+
+.business {
+
+    padding:90px 8%;
+
+    text-align:center;
+
+    background:var(--green);
+
+    color:white;
+
+}
+
+
+
+.business h2 {
+
+    font-size:45px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.business button {
+
+
+    margin-top:30px;
+
+    padding:16px 35px;
+
+    border:none;
+
+    border-radius:30px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+
+
+/* ==========================
+ FOOTER
+========================== */
+
+
+footer {
+
+    padding:40px;
+
+    text-align:center;
+
+    background:var(--dark);
+
+    color:white;
+
+}
+
+
+
+
+/* ==========================
+ MOBILE
+========================== */
+
+
+@media(max-width:900px){
+
+
+.navbar {
+
+    flex-direction:column;
+    gap:20px;
+
+}
+
+
+nav {
+
+    flex-wrap:wrap;
+    justify-content:center;
+
+}
+
+
+.hero {
+
+    grid-template-columns:1fr;
+
+    text-align:center;
+
+}
+
+
+.hero h1 {
+
+    font-size:45px;
+
+}
+
+
+.buttons {
+
+    justify-content:center;
+
+}
+
+
+.cards {
+
+    grid-template-columns:1fr;
+
+}
+
+
 }
